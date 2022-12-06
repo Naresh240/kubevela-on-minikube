@@ -34,8 +34,8 @@ vela addon enable velaux serviceType=NodePort
 
 ## default username and password:
 ```bash
-admin
-VelaUX12345
+username: admin
+password: VelaUX12345
 ```
 
 ## Deploy nginx deployment with vela
