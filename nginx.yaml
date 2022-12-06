@@ -1,0 +1,35 @@
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: nginx-app
+spec:
+  components:
+    - name: nginx-application
+      type: webservice
+      properties:
+        image: nginx:latest
+        exposeType: NodePort
+        ports:
+         - port: 80
+           nodePort: 30001
+           expose: true
+      traits:
+        - type: scaler
+          properties:
+            replicas: 1
+  policies:
+    - name: target-default
+      type: topology
+      properties:
+        # The cluster with name local is installed the KubeVela.
+        clusters: ["local"]
+        namespace: "default"
+  workflow:
+    steps:
+      - name: deploy2default
+        type: deploy
+        properties:
+          policies: ["target-default"]
+      - name: manual-approval
+        type: suspend
