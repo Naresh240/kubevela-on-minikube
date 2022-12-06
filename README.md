@@ -50,3 +50,11 @@ vela up -f nginx.yaml
 kubectl get pods
 kubectl get svc
 ```
+
+## Few kubevela commands
+
+```bash
+vela show webservice
+vela components list
+vela taints list
+```
